@@ -7,9 +7,9 @@ const projects = {
       ["Assembly Time", "−25%"],
       ["Service Access", "+40%"]
     ],
-    problem: "The initial LC system enclosure was not scalable or production-ready.",
+    problem: "The initial LC enclosure was not scalable or production-ready.",
     insight: "Early cross-functional alignment reduced rework and clarified trade-offs.",
-    impact: "Delivered a production-ready enclosure enabling limited-scale manufacturing."
+    impact: "Delivered a production-ready enclosure enabling limited manufacturing."
   },
 
   pcr: {
@@ -35,7 +35,7 @@ const projects = {
     ],
     problem: "Continuous operation caused vibration and maintenance issues.",
     insight: "Rigid modular design reduced vibration and simplified servicing.",
-    impact: "Delivered a robust enclosure for long-term lab use."
+    impact: "Delivered a robust enclosure for lab use."
   },
 
   pump: {
@@ -46,8 +46,8 @@ const projects = {
       ["Trade-offs", "Documented"]
     ],
     problem: "HPLC requires precise high-pressure pumping.",
-    insight: "Ball screw vs cam-follower revealed performance trade-offs.",
-    impact: "Provided evaluated designs for informed mechanism selection."
+    insight: "Ball screw vs cam-follower revealed trade-offs.",
+    impact: "Provided evaluated designs for informed selection."
   },
 
   speed: {
@@ -58,7 +58,7 @@ const projects = {
       ["Realtime", "Yes"]
     ],
     problem: "Manual speed monitoring was inaccurate.",
-    insight: "Sensors + real-time processing enable low-cost accuracy.",
+    insight: "Sensors + real-time processing enable accuracy.",
     impact: "Built and validated Arduino-based system."
   },
 
@@ -69,7 +69,7 @@ const projects = {
       ["Usability", "+40%"],
       ["Engagement", "+25%"]
     ],
-    problem: "Small businesses lacked clear web presence.",
+    problem: "Small businesses lacked clear websites.",
     insight: "Task-focused design improves usability.",
     impact: "Delivered functional business websites."
   }
@@ -78,15 +78,13 @@ const projects = {
 // OPEN MODAL
 document.querySelectorAll(".project").forEach(card => {
   card.addEventListener("click", () => {
-    const key = card.dataset.key;
-    const data = projects[key];
+    const data = projects[card.dataset.key];
 
     document.getElementById("modal-title").innerText = data.title;
     document.getElementById("modal-problem").innerText = data.problem;
     document.getElementById("modal-insight").innerText = data.insight;
     document.getElementById("modal-impact").innerText = data.impact;
 
-    // Metrics
     const metrics = document.getElementById("modal-metrics");
     metrics.innerHTML = "";
     data.metrics.forEach(m => {
@@ -96,18 +94,16 @@ document.querySelectorAll(".project").forEach(card => {
       metrics.appendChild(div);
     });
 
-    // Timeline
     const timeline = document.getElementById("timeline");
     timeline.innerHTML = "";
-
     if (data.timeline) {
-      timeline.style.display = "flex";
       data.timeline.forEach(stage => {
         const div = document.createElement("div");
-        div.className = "stage active";
-        div.innerHTML = `<strong>${stage}</strong><span>Completed</span>`;
+        div.className = "stage";
+        div.innerHTML = `<strong>${stage}</strong>`;
         timeline.appendChild(div);
       });
+      timeline.style.display = "flex";
     } else {
       timeline.style.display = "none";
     }
